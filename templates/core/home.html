@@ -1,8 +1,35 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Dikshyant — My Corner{% endblock %}
 
 {% block content %}
-<h1>Hey, I'm Dikshyant.</h1>
-<p>This is my corner of the internet.</p>
+
+<section class="hero" style="--hero-highlight: {{ site.hero_highlight_color }};">
+  <div class="hero-left">
+    <p class="hero-eyebrow">{{ site.hero_eyebrow }}</p>
+    <h1 class="hero-name">{{ site.hero_name }}</h1>
+    <p class="hero-bio">
+      {{ site.hero_bio|linebreaksbr }}
+    </p>
+    <p class="hero-handle">{{ site.hero_handle }}</p>
+    <div class="hero-links">
+      <a href="https://github.com/Dikashyanta" target="_blank">GitHub</a>
+      <a href="/projects/">Projects</a>
+      <a href="/about/">About Me</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-photo-frame">
+      {% if site.hero_photo %}
+        <img src="{{ site.hero_photo.url }}" alt="{{ site.hero_name }}">
+      {% else %}
+        <img src="{% static 'images/me.jpg' %}" alt="Dikshyant" onerror="this.style.display='none'">
+        <div class="hero-photo-placeholder">your photo here</div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
 {% endblock %}

@@ -1,19 +1,31 @@
+ {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Life{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
 
-    <nav>
-        <a href="/">Home</a>
-        <a href="/projects/">Projects</a>
-        <a href="/certificates/">Certificates</a>
-        <a href="/about/">About</a>
+    <nav class="navbar">
+        <span class="nav-logo">
+            {% if site.logo_image %}
+                <img src="{{ site.logo_image.url }}" alt="Logo" style="height:40px;width:auto;object-fit:contain;">
+            {% else %}
+                {{ site.logo_text }}
+            {% endif %}
+        </span>
+        <div class="nav-links">
+            <a href="/about/">Bio</a>
+            <a href="/projects/">Projects</a>
+            <a href="/certificates/">Certificates</a>
+            <a href="#">Blog</a>
+        </div>
     </nav>
 
     <main>
