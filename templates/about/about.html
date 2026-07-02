@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Me — Dikshyant{% endblock %}
+
+{% block content %}
+
+<!-- ══════════════════════════════
+     HERO
+══════════════════════════════ -->
+<section class="about-hero">
+
+  <div class="about-hero-left">
+    <p class="about-tag">est. 2003 · Kathmandu, Nepal</p>
+
+    <h1 class="about-headline">
+      This is<br>
+      <em>me,unfiltered.</em><br>
+      
+    </h1>
+
+    <p class="about-intro">
+      Not a resume. Not a portfolio.<br>
+      Just a person trying to build things,
+      see places, and remember it all.
+    </p>
+
+    <!-- bio letter — overlaps collage on desktop -->
+    <div class="bio-letter">
+      <p>
+        Hey. I'm Dikshyant — from Kathmandu,
+        writing code, breaking things, putting them back together.
+        I made this site not to impress anyone,
+        but to have a place that's truly mine.
+        A scrapbook. A record of a life being lived.
+        If you're reading this — hi. Pull up a chair.
+      </p>
+      <div class="bio-letter-sig">— Dikshyant</div>
+    </div>
+  </div>
+
+  <!-- Photo collage -->
+  <div class="about-hero-right">
+    <div class="collage">
+      <div class="collage-photo cp1">
+        <div class="ph">photo 1</div>
+      </div>
+      <div class="collage-photo cp2">
+        <div class="ph">photo 2</div>
+      </div>
+      <div class="collage-photo cp3">
+        <div class="ph">photo 3</div>
+      </div>
+      <div class="collage-photo cp4">
+        <div class="ph">photo 4</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════
+     INTERESTS
+══════════════════════════════ -->
+<section class="interests-section">
+  <div class="eyebrow">Currently into</div>
+
+  <div class="interests-grid">
+
+    <a href="/about/interests/reading/" class="interest-card">
+      <span class="interest-icon">📖</span>
+      <div class="interest-category">Reading</div>
+      <div class="interest-title">Atomic Habits</div>
+      <p class="interest-desc">
+        Small changes, remarkable results.
+        Currently on chapter 12.
+      </p>
+    </a>
+
+    <a href="/about/interests/building/" class="interest-card">
+      <span class="interest-icon">⚙️</span>
+      <div class="interest-category">Building</div>
+      <div class="interest-title">This website</div>
+      <p class="interest-desc">
+        Django, parchment tones, and a lot
+        of caffeine. Work in progress.
+      </p>
+    </a>
+
+    <a href="/about/interests/listening/" class="interest-card">
+      <span class="interest-icon">🎧</span>
+      <div class="interest-category">Listening</div>
+      <div class="interest-title">Lo-fi & rain</div>
+      <p class="interest-desc">
+        My productivity playlist hasn't
+        changed in six months. No notes.
+      </p>
+    </a>
+
+    <a href="/about/interests/where/" class="interest-card">
+      <span class="interest-icon">📍</span>
+      <div class="interest-category">Where</div>
+      <div class="interest-title">Kathmandu</div>
+      <p class="interest-desc">
+        Between the mountains and the chaos.
+        Exactly where I need to be right now.
+      </p>
+    </a>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     MEMORIES
+══════════════════════════════ -->
+<section class="memories-section">
+  <div class="eyebrow">Memories</div>
+  <h2 class="memories-headline">
+    Moments worth<br>keeping forever.
+  </h2>
+
+  <div class="memories-grid">
+
+    <a href="/about/memories/first-solo-trip/" class="memory-card">
+      <div class="memory-cover-ph">cover photo</div>
+      <div class="memory-body">
+        <div class="memory-date">March 2023</div>
+        <div class="memory-title">First solo trip</div>
+        <p class="memory-caption">
+          Went somewhere alone for the first time.
+          Terrifying. Perfect.
+        </p>
+      </div>
+    </a>
+
+    <a href="/about/memories/the-project-that-broke-me/" class="memory-card">
+      <div class="memory-cover-ph">cover photo</div>
+      <div class="memory-body">
+        <div class="memory-date">July 2023</div>
+        <div class="memory-title">The project that broke me</div>
+        <p class="memory-caption">
+          Spent 3 weeks on a bug that turned out
+          to be a missing semicolon.
+        </p>
+      </div>
+    </a>
+
+    <a href="/about/memories/graduation-day/" class="memory-card">
+      <div class="memory-cover-ph">cover photo</div>
+      <div class="memory-body">
+        <div class="memory-date">November 2023</div>
+        <div class="memory-title">Graduation day</div>
+        <p class="memory-caption">
+          Everyone cried. I pretended not to. I did.
+        </p>
+      </div>
+    </a>
+
+    <a href="/about/memories/" class="memory-card-more">
+      <div class="arrow-circle">→</div>
+      <span>See all memories</span>
+    </a>
+
+  </div>
+</section>
+
+{% endblock %}

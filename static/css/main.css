@@ -229,3 +229,443 @@ body {
 
   .hero-name { letter-spacing: -2px; }
 }
+
+/* ════════════════════════════════
+   ABOUT PAGE — append to main.css
+════════════════════════════════ */
+
+/* ── Shared eyebrow label ── */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 2rem;
+}
+.eyebrow::before,
+.eyebrow::after {
+  content: '';
+  flex: 0 0 40px;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ════════════════════════════════
+   ABOUT HERO
+════════════════════════════════ */
+.about-hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 73px; /* height of your fixed navbar */
+}
+
+/* Left — headline + bio letter */
+.about-hero-left {
+  padding: 5rem 3rem 5rem 5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.about-tag {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 1.25rem;
+}
+
+.about-headline {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -2px;
+  color: var(--ink);
+  margin-bottom: 1.75rem;
+}
+
+.about-headline em {
+  font-style: italic;
+  color: #2d5a3d;
+}
+
+.about-intro {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  font-weight: 300;
+  line-height: 1.75;
+  max-width: 360px;
+  margin-bottom: 2.5rem;
+}
+
+/* Bio letter card */
+.bio-letter {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 1.75rem 2rem;
+  box-shadow: 4px 4px 0 var(--border);
+  max-width: 340px;
+  position: relative;
+}
+
+.bio-letter::before {
+  content: 'A letter to a stranger';
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.bio-letter p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.975rem;
+  line-height: 1.85;
+  color: var(--ink-soft);
+}
+
+.bio-letter-sig {
+  margin-top: 1.25rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+
+/* Right — photo collage */
+.about-hero-right {
+  position: relative;
+  overflow: visible;
+}
+
+.collage {
+  position: relative;
+  height: 100%;
+  min-height: 580px;
+}
+
+.collage-photo {
+  position: absolute;
+  border: 3px solid #fff;
+  box-shadow: 3px 3px 14px rgba(0,0,0,0.14);
+  overflow: hidden;
+  background: var(--border);
+}
+
+.collage-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+
+/* placeholder */
+.collage-photo .ph {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--ink-soft);
+}
+
+/* positions + tilts */
+.cp1 { width: 255px; height: 330px; top: 8%;  left: 8%;  transform: rotate(-3deg);   z-index: 3; }
+.cp2 { width: 215px; height: 270px; top: 5%;  left: 46%; transform: rotate(2.5deg);  z-index: 2; }
+.cp3 { width: 235px; height: 295px; top: 44%; left: 22%; transform: rotate(-1.5deg); z-index: 4; }
+.cp4 { width: 175px; height: 215px; top: 50%; left: 60%; transform: rotate(3deg);    z-index: 1; }
+
+/* bio letter overlaps collage only on very wide screens */
+@media (min-width: 1400px) {
+  .bio-letter {
+    position: relative;
+    bottom: -2.5rem;
+    left: -2rem;
+    z-index: 10;
+    max-width: 500px;
+  }
+  .about-hero-left { padding-bottom: 7rem; }
+}
+
+@media (min-width: 900px) and (max-width: 1399px) {
+  .bio-letter {
+    position: static;
+    max-width: 100%;
+    margin-top: 2rem;
+  }
+}
+
+/* ════════════════════════════════
+   INTERESTS SECTION
+════════════════════════════════ */
+.interests-section {
+  padding: 8rem 5vw 6rem;
+  background: var(--bg);
+}
+
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.interest-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 2rem 1.75rem 3rem;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.interest-card::after {
+  content: '→';
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.75rem;
+  font-size: 1rem;
+  color: var(--border);
+  transition: transform 0.2s, color 0.2s;
+}
+
+.interest-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+}
+
+.interest-card:hover::after {
+  transform: translateX(4px);
+  color: var(--accent);
+}
+
+.interest-icon {
+  font-size: 1.6rem;
+  display: block;
+  margin-bottom: 1.25rem;
+}
+
+.interest-category {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #2d5a3d;
+  margin-bottom: 0.4rem;
+}
+
+.interest-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.interest-desc {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+/* ════════════════════════════════
+   MEMORIES SECTION
+════════════════════════════════ */
+.memories-section {
+  padding: 6rem 5vw 8rem;
+  background: #1a1410;
+}
+
+.memories-section .eyebrow {
+  color: #6b5740;
+}
+.memories-section .eyebrow::before,
+.memories-section .eyebrow::after {
+  background: #3a2e22;
+}
+
+.memories-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: #f0ebe1;
+  margin-bottom: 3rem;
+  max-width: 480px;
+  line-height: 1.15;
+}
+
+.memories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+/* Memory card */
+.memory-card {
+  display: block;
+  text-decoration: none;
+  background: #2a2118;
+  border: 1px solid #3a2e22;
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.memory-card:hover {
+  transform: translateY(-5px);
+  border-color: #b8860b;
+}
+
+.memory-cover {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+}
+
+.memory-cover-ph {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: #3a2e22;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6b5740;
+}
+
+.memory-body {
+  padding: 1.25rem 1.4rem 1.5rem;
+}
+
+.memory-date {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #b8860b;
+  margin-bottom: 0.4rem;
+}
+
+.memory-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #f0ebe1;
+  margin-bottom: 0.4rem;
+  line-height: 1.25;
+}
+
+.memory-caption {
+  font-size: 0.8rem;
+  color: #9e8870;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* See all card */
+.memory-card-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background: transparent;
+  border: 1px dashed #3a2e22;
+  min-height: 220px;
+  padding: 2rem;
+  gap: 1rem;
+  transition: border-color 0.2s;
+}
+
+.memory-card-more:hover { border-color: #b8860b; }
+
+.memory-card-more .arrow-circle {
+  width: 46px; height: 46px;
+  border: 1px solid #3a2e22;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #6b5740;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.memory-card-more:hover .arrow-circle {
+  border-color: #b8860b;
+  color: #b8860b;
+}
+
+.memory-card-more span {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #6b5740;
+  text-align: center;
+  transition: color 0.2s;
+}
+
+.memory-card-more:hover span { color: #b8860b; }
+
+/* ════════════════════════════════
+   RESPONSIVE — ABOUT PAGE
+════════════════════════════════ */
+@media (max-width: 1024px) {
+  .interests-grid  { grid-template-columns: repeat(2, 1fr); }
+  .memories-grid   { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .about-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .about-hero-left {
+    padding: 5rem 1.5rem 2rem;
+    order: 1;
+  }
+
+  .about-hero-right {
+    order: 2;
+    min-height: 380px;
+  }
+
+  .bio-letter {
+    position: static !important;
+    max-width: 100%;
+    margin-top: 2rem;
+  }
+
+  .cp1 { width: 155px; height: 200px; top: 5%;  left: 4%;  }
+  .cp2 { width: 135px; height: 170px; top: 3%;  left: 46%; }
+  .cp3 { width: 150px; height: 185px; top: 46%; left: 18%; }
+  .cp4 { width: 110px; height: 135px; top: 52%; left: 60%; }
+
+  .interests-section { padding: 5rem 1.5rem 4rem; }
+  .interests-grid    { grid-template-columns: 1fr; }
+
+  .memories-section { padding: 5rem 1.5rem 5rem; }
+  .memories-grid    { grid-template-columns: 1fr; }
+}
