@@ -14,27 +14,16 @@
     <p class="about-tag">est. 2003 · Kathmandu, Nepal</p>
 
     <h1 class="about-headline">
-      This is<br>
-      <em>me,unfiltered.</em><br>
-      
+      {{ hero.headline }}
     </h1>
 
     <p class="about-intro">
-      Not a resume. Not a portfolio.<br>
-      Just a person trying to build things,
-      see places, and remember it all.
+      {{ hero.intro_text|linebreaks }}
     </p>
 
     <!-- bio letter — overlaps collage on desktop -->
     <div class="bio-letter">
-      <p>
-        Hey. I'm Dikshyant — from Kathmandu,
-        writing code, breaking things, putting them back together.
-        I made this site not to impress anyone,
-        but to have a place that's truly mine.
-        A scrapbook. A record of a life being lived.
-        If you're reading this — hi. Pull up a chair.
-      </p>
+      <p>{{ hero.bio_letter }}</p>
       <div class="bio-letter-sig">— Dikshyant</div>
     </div>
   </div>
@@ -42,18 +31,11 @@
   <!-- Photo collage -->
   <div class="about-hero-right">
     <div class="collage">
-      <div class="collage-photo cp1">
-        <div class="ph">photo 1</div>
-      </div>
-      <div class="collage-photo cp2">
-        <div class="ph">photo 2</div>
-      </div>
-      <div class="collage-photo cp3">
-        <div class="ph">photo 3</div>
-      </div>
-      <div class="collage-photo cp4">
-        <div class="ph">photo 4</div>
-      </div>
+      {% for photo in hero.photo_collage.all %}
+        <div class="collage-photo cp{{ forloop.counter }}">
+          <img src="{{ photo.image.url }}" alt="Collage photo" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+      {% endfor %}
     </div>
   </div>
 
@@ -66,46 +48,16 @@
   <div class="eyebrow">Currently into</div>
 
   <div class="interests-grid">
-
-    <a href="/about/interests/reading/" class="interest-card">
-      <span class="interest-icon">📖</span>
-      <div class="interest-category">Reading</div>
-      <div class="interest-title">Atomic Habits</div>
+    {% for interest in interests %}
+    <a href="/about/interests/{{ interest.category }}/" class="interest-card">
+      <span class="interest-icon">{{ interest.icon }}</span>
+      <div class="interest-category">{{ interest.category|title }}</div>
+      <div class="interest-title">{{ interest.title }}</div>
       <p class="interest-desc">
-        Small changes, remarkable results.
-        Currently on chapter 12.
+        {{ interest.description }}
       </p>
     </a>
-
-    <a href="/about/interests/building/" class="interest-card">
-      <span class="interest-icon">⚙️</span>
-      <div class="interest-category">Building</div>
-      <div class="interest-title">This website</div>
-      <p class="interest-desc">
-        Django, parchment tones, and a lot
-        of caffeine. Work in progress.
-      </p>
-    </a>
-
-    <a href="/about/interests/listening/" class="interest-card">
-      <span class="interest-icon">🎧</span>
-      <div class="interest-category">Listening</div>
-      <div class="interest-title">Lo-fi & rain</div>
-      <p class="interest-desc">
-        My productivity playlist hasn't
-        changed in six months. No notes.
-      </p>
-    </a>
-
-    <a href="/about/interests/where/" class="interest-card">
-      <span class="interest-icon">📍</span>
-      <div class="interest-category">Where</div>
-      <div class="interest-title">Kathmandu</div>
-      <p class="interest-desc">
-        Between the mountains and the chaos.
-        Exactly where I need to be right now.
-      </p>
-    </a>
+    {% endfor %}
 
   </div>
 </section>
@@ -120,41 +72,22 @@
   </h2>
 
   <div class="memories-grid">
-
-    <a href="/about/memories/first-solo-trip/" class="memory-card">
-      <div class="memory-cover-ph">cover photo</div>
+    {% for memory in memories %}
+    <a href="/about/memories/{{ memory.slug }}/" class="memory-card">
+      {% if memory.cover_image %}
+        <img src="{{ memory.cover_image.url }}" alt="{{ memory.title }}" class="memory-cover-ph" style="width: 100%; height: 200px; object-fit: cover;">
+      {% else %}
+        <div class="memory-cover-ph">cover photo</div>
+      {% endif %}
       <div class="memory-body">
-        <div class="memory-date">March 2023</div>
-        <div class="memory-title">First solo trip</div>
+        <div class="memory-date">{{ memory.date|date:"M Y" }}</div>
+        <div class="memory-title">{{ memory.title }}</div>
         <p class="memory-caption">
-          Went somewhere alone for the first time.
-          Terrifying. Perfect.
+          {{ memory.caption }}
         </p>
       </div>
     </a>
-
-    <a href="/about/memories/the-project-that-broke-me/" class="memory-card">
-      <div class="memory-cover-ph">cover photo</div>
-      <div class="memory-body">
-        <div class="memory-date">July 2023</div>
-        <div class="memory-title">The project that broke me</div>
-        <p class="memory-caption">
-          Spent 3 weeks on a bug that turned out
-          to be a missing semicolon.
-        </p>
-      </div>
-    </a>
-
-    <a href="/about/memories/graduation-day/" class="memory-card">
-      <div class="memory-cover-ph">cover photo</div>
-      <div class="memory-body">
-        <div class="memory-date">November 2023</div>
-        <div class="memory-title">Graduation day</div>
-        <p class="memory-caption">
-          Everyone cried. I pretended not to. I did.
-        </p>
-      </div>
-    </a>
+    {% endfor %}
 
     <a href="/about/memories/" class="memory-card-more">
       <div class="arrow-circle">→</div>

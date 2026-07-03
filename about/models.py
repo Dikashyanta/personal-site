@@ -6,6 +6,7 @@ from django.db import models
 
 class HeroSection(models.Model):
     headline       = models.CharField(max_length=200)
+    intro_text     = models.TextField(default='Not a resume. Not a portfolio.\nJust a person trying to build things,\nsee places, and remember it all.')
     bio_letter     = models.TextField()
     photo_collage  = models.ManyToManyField('CollagePhoto')
 

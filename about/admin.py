@@ -15,7 +15,12 @@ class MemoryPhotoInline(admin.TabularInline):
 
 @admin.register(HeroSection)
 class HeroAdmin(admin.ModelAdmin):
+    fields = ['headline', 'intro_text', 'bio_letter']
     inlines = [CollagePhotoInline]
+
+@admin.register(CollagePhoto)
+class CollagePhotoAdmin(admin.ModelAdmin):
+    list_display = ['id', 'order']
 
 @admin.register(Interest)
 class InterestAdmin(admin.ModelAdmin):
