@@ -8,6 +8,7 @@
 <!-- ══════════════════════════════
      HERO
 ══════════════════════════════ -->
+{% if hero %}
 <section class="about-hero">
 
   <div class="about-hero-left">
@@ -23,7 +24,7 @@
 
     <!-- bio letter — overlaps collage on desktop -->
     <div class="bio-letter">
-      <p>{{ hero.bio_letter }}</p>
+      <p>{{ hero.bio_letter|linebreaks }}</p>
       <div class="bio-letter-sig">— Dikshyant</div>
     </div>
   </div>
@@ -40,6 +41,11 @@
   </div>
 
 </section>
+{% else %}
+<section class="about-hero">
+  <p style="text-align: center; padding: 40px;">No hero section data. Please add content in the admin panel.</p>
+</section>
+{% endif %}
 
 <!-- ══════════════════════════════
      INTERESTS

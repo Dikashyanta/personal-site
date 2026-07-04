@@ -13,15 +13,15 @@
 <body>
 
     <nav class="navbar">
-        <span class="nav-logo">
+        <a href="{% url 'home' %}" class="nav-logo" style="text-decoration: none; color: inherit;">
             {% if site.logo_image %}
                 <img src="{{ site.logo_image.url }}" alt="Logo" style="height:40px;width:auto;object-fit:contain;">
             {% else %}
                 {{ site.logo_text }}
             {% endif %}
-        </span>
+        </a>
         <div class="nav-links">
-            <a href="{% url 'about' %}">Bio</a>
+            <a href="{% url 'about:about' %}">Bio</a>
             <a href="/projects/">Projects</a>
             <a href="/certificates/">Certificates</a>
             <a href="#">Blog</a>

@@ -1,13 +1,15 @@
 from django.contrib import admin
-
-# Register your models here.
-# about/admin.py
-from django.contrib import admin
+from django.core.exceptions import ValidationError
 from .models import HeroSection, CollagePhoto, Interest, Memory, MemoryPhoto
 
 class CollagePhotoInline(admin.TabularInline):
     model = HeroSection.photo_collage.through
-    extra = 3
+    extra = 0
+    
+    def get_queryset(self, request):
+        # Remove any potential duplicates
+        qs = super().get_queryset(request)
+        return qs.distinct()
 
 class MemoryPhotoInline(admin.TabularInline):
     model = MemoryPhoto
@@ -17,6 +19,12 @@ class MemoryPhotoInline(admin.TabularInline):
 class HeroAdmin(admin.ModelAdmin):
     fields = ['headline', 'intro_text', 'bio_letter']
     inlines = [CollagePhotoInline]
+    
+    def get_inline_instances(self, request, obj=None):
+        # Only show inlines when editing existing HeroSection
+        if obj is None:
+            return []
+        return super().get_inline_instances(request, obj)
 
 @admin.register(CollagePhoto)
 class CollagePhotoAdmin(admin.ModelAdmin):
