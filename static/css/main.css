@@ -275,7 +275,7 @@ body {
 }
 
 .about-tag {
-  font-size: 0.68rem;
+  font-size: 0.6rem;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -298,8 +298,9 @@ body {
   color: #2d5a3d;
 }
 
-.about-intro {
-  font-size: 1rem;
+.about-intro,
+.about-hero-left > p:not(.about-tag) {
+  font-size: 1.1rem;
   color: var(--ink-soft);
   font-weight: 300;
   line-height: 1.75;
@@ -385,10 +386,10 @@ body {
 }
 
 /* positions + tilts */
-.cp1 { width: 255px; height: 330px; top: 8%;  left: 8%;  transform: rotate(-3deg);   z-index: 3; }
-.cp2 { width: 215px; height: 270px; top: 5%;  left: 46%; transform: rotate(2.5deg);  z-index: 2; }
-.cp3 { width: 235px; height: 295px; top: 44%; left: 22%; transform: rotate(-1.5deg); z-index: 4; }
-.cp4 { width: 175px; height: 215px; top: 50%; left: 60%; transform: rotate(3deg);    z-index: 1; }
+.cp1 { width: 275px; height: 330px; top: 8%;  left: 8%;  transform: rotate(-3deg);   z-index: 3; }
+.cp2 { width: 275px; height: 270px; top: 5%;  left: 46%; transform: rotate(2.5deg);  z-index: 2; }
+.cp3 { width: 255px; height: 295px; top: 44%; left: 22%; transform: rotate(-1.5deg); z-index: 4; }
+.cp4 { width: 195px; height: 215px; top: 50%; left: 60%; transform: rotate(3deg);    z-index: 1; }
 
 /* bio letter overlaps collage only on very wide screens */
 @media (min-width: 1400px) {
@@ -420,9 +421,10 @@ body {
 
 .interests-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 1.25rem;
 }
+
 
 .interest-card {
   background: var(--card);
@@ -456,9 +458,12 @@ body {
 }
 
 .interest-icon {
-  font-size: 1.6rem;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  background: #f0f0f0;
+  object-fit: cover;
   display: block;
-  margin-bottom: 1.25rem;
 }
 
 .interest-category {

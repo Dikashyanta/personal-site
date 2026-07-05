@@ -3,7 +3,7 @@ from .models import HeroSection, Interest, Memory
 
 def about(request):
     hero = HeroSection.objects.first()
-    interests = Interest.objects.all().order_by('category')
+    interests = Interest.objects.select_related('category').all().order_by('category__name')
     memories = Memory.objects.all().order_by('-date')
     
     context = {

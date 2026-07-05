@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.core.exceptions import ValidationError
-from .models import HeroSection, CollagePhoto, Interest, Memory, MemoryPhoto
+from .models import Category, HeroSection, CollagePhoto, Interest, Memory, MemoryPhoto
 
 class CollagePhotoInline(admin.TabularInline):
     model = HeroSection.photo_collage.through
@@ -30,9 +30,15 @@ class HeroAdmin(admin.ModelAdmin):
 class CollagePhotoAdmin(admin.ModelAdmin):
     list_display = ['id', 'order']
 
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'slug']
+    prepopulated_fields = {'slug': ('name',)}
+
 @admin.register(Interest)
 class InterestAdmin(admin.ModelAdmin):
-    list_display = ['category', 'title', 'updated_at']
+    list_display = ['title', 'category', 'updated_at']
+    list_filter = ['category']
 
 @admin.register(Memory)
 class MemoryAdmin(admin.ModelAdmin):
