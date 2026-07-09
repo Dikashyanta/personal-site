@@ -356,7 +356,7 @@ body {
 .collage {
   position: relative;
   height: 100%;
-  min-height: 580px;
+  min-height: 590px;
 }
 
 .collage-photo {
@@ -387,9 +387,9 @@ body {
 
 /* positions + tilts */
 .cp1 { width: 275px; height: 330px; top: 8%;  left: 8%;  transform: rotate(-3deg);   z-index: 3; }
-.cp2 { width: 275px; height: 270px; top: 5%;  left: 46%; transform: rotate(2.5deg);  z-index: 2; }
-.cp3 { width: 255px; height: 295px; top: 44%; left: 22%; transform: rotate(-1.5deg); z-index: 4; }
-.cp4 { width: 195px; height: 215px; top: 50%; left: 60%; transform: rotate(3deg);    z-index: 1; }
+.cp2 { width: 275px; height: 310px; top: 5%;  left: 46%; transform: rotate(2.5deg);  z-index: 2; }
+.cp3 { width: 275px; height: 295px; top: 44%; left: 22%; transform: rotate(-1.5deg); z-index: 4; }
+.cp4 { width: 275px; height: 295px; top: 40%; left: 60%; transform: rotate(3deg);    z-index: 1; }
 
 /* bio letter overlaps collage only on very wide screens */
 @media (min-width: 1400px) {
@@ -666,11 +666,258 @@ body {
   .cp1 { width: 155px; height: 200px; top: 5%;  left: 4%;  }
   .cp2 { width: 135px; height: 170px; top: 3%;  left: 46%; }
   .cp3 { width: 150px; height: 185px; top: 46%; left: 18%; }
-  .cp4 { width: 110px; height: 135px; top: 52%; left: 60%; }
+  .cp4 { width: 110px; height: 145px; top: 52%; left: 60%; }
 
   .interests-section { padding: 5rem 1.5rem 4rem; }
   .interests-grid    { grid-template-columns: 1fr; }
 
   .memories-section { padding: 5rem 1.5rem 5rem; }
   .memories-grid    { grid-template-columns: 1fr; }
+}
+/* ════════════════════════════════
+   PROJECTS PAGE — append to main.css
+════════════════════════════════ */
+
+/* ── Hero ── */
+.projects-hero {
+  padding: 8rem 5vw 3rem;
+  background: var(--bg);
+}
+
+.projects-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  color: var(--ink);
+  line-height: 1.05;
+  margin-bottom: 1.25rem;
+}
+
+.projects-headline em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.projects-intro {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  font-weight: 300;
+  max-width: 480px;
+  line-height: 1.75;
+}
+
+/* ── Contribution card ── */
+.contrib-section {
+  padding: 0 5vw 4rem;
+  background: var(--bg);
+}
+
+.contrib-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 4px 4px 0 var(--border);
+  padding: 1.75rem 2rem 2rem;
+}
+
+.contrib-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.contrib-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.contrib-profile-link {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.contrib-profile-link:hover {
+  text-decoration: underline;
+}
+
+/* Embed fallback — recolor the third-party SVG to fit the theme */
+.contrib-embed {
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+.contrib-embed img {
+  display: block;
+  min-width: 780px;
+  width: 100%;
+  height: auto;
+  /* nudge the default green palette toward the site's amber/red accent */
+  filter: sepia(0.35) saturate(1.4) hue-rotate(-25deg) brightness(0.96);
+}
+
+/* Real-data grid version */
+.contrib-grid {
+  display: flex;
+  gap: 3px;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.contrib-col {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.contrib-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  background: #e8e0d2;
+  display: inline-block;
+}
+
+.contrib-dot.level-0 { background: #e8e0d2; }
+.contrib-dot.level-1 { background: #e8c9a8; }
+.contrib-dot.level-2 { background: #e8a045; }  /* --accent2 */
+.contrib-dot.level-3 { background: #d16b3a; }
+.contrib-dot.level-4 { background: #c0392b; }  /* --accent */
+
+.contrib-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  font-size: 0.68rem;
+  color: var(--ink-soft);
+}
+
+/* ── Repo grid ── */
+.repos-section {
+  padding: 1rem 5vw 6rem;
+  background: var(--bg);
+}
+
+.repos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.repo-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 1.5rem 1.6rem 1.75rem;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.repo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  border-color: var(--accent);
+}
+
+.repo-card-top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.repo-icon {
+  color: var(--ink-soft);
+  flex-shrink: 0;
+}
+
+.repo-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--accent);
+}
+
+.repo-desc {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  font-weight: 300;
+  flex-grow: 1;
+}
+
+.repo-desc-empty {
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.repo-card-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem;
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.repo-lang {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 500;
+}
+
+.lang-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent2);
+  display: inline-block;
+}
+
+/* Optional: color-code common languages */
+.lang-dot[data-lang="Python"]     { background: #e8a045; }
+.lang-dot[data-lang="JavaScript"] { background: #d4b83a; }
+.lang-dot[data-lang="TypeScript"] { background: #3a7ab8; }
+.lang-dot[data-lang="HTML"]       { background: #c0392b; }
+.lang-dot[data-lang="CSS"]        { background: #7a4fb8; }
+.lang-dot[data-lang="Java"]       { background: #b8763a; }
+.lang-dot[data-lang="C++"]        { background: #b83a5c; }
+
+.repo-stat {
+  font-weight: 500;
+}
+
+.repo-updated {
+  margin-left: auto;
+  opacity: 0.75;
+}
+
+.repos-empty {
+  color: var(--ink-soft);
+  font-style: italic;
+  margin-top: 1.5rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .projects-hero  { padding: 6rem 1.5rem 2rem; }
+  .contrib-section { padding: 0 1.5rem 3rem; }
+  .repos-section  { padding: 1rem 1.5rem 4rem; }
+  .repos-grid     { grid-template-columns: 1fr; }
+  .repo-updated   { margin-left: 0; }
 }

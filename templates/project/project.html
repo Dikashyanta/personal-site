@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Projects — Dikshyant{% endblock %}
+
+{% block content %}
+<section class="projects-hero">
+  <div class="eyebrow">Code &amp; Commits</div>
+  <h1 class="projects-headline">What I've Been <em>Building</em></h1>
+  <p class="projects-intro">
+    A live feed of my public work on GitHub — pulled straight from my repos,
+    so this page updates itself every time I push.
+  </p>
+</section>
+
+<!-- ── Contribution graph card ── -->
+<section class="contrib-section">
+  <div class="contrib-card">
+    <div class="contrib-card-header">
+      <span class="contrib-label">Contribution Activity</span>
+      <a href="https://github.com/{{ github_username }}" target="_blank" class="contrib-profile-link">
+        @{{ github_username }} →
+      </a>
+    </div>
+
+    {% if contribution_weeks %}
+      <!-- ═══ REAL DATA VERSION (use once you wire up GraphQL) ═══ -->
+      <div class="contrib-grid">
+        {% for week in contribution_weeks %}
+          <div class="contrib-col">
+            {% for day in week %}
+              <span class="contrib-dot level-{{ day.level }}" title="{{ day.date }}: {{ day.count }} contributions"></span>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="contrib-legend">
+        <span>Less</span>
+        <span class="contrib-dot level-0"></span>
+        <span class="contrib-dot level-1"></span>
+        <span class="contrib-dot level-2"></span>
+        <span class="contrib-dot level-3"></span>
+        <span class="contrib-dot level-4"></span>
+        <span>More</span>
+      </div>
+    {% else %}
+      <!-- ═══ EMBED FALLBACK VERSION (no token needed) ═══ -->
+      <div class="contrib-embed">
+        <img src="https://ghchart.rshah.org/c0392b/{{ github_username }}"
+             alt="{{ github_username }} GitHub contribution graph"
+             loading="lazy">
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- ── Repo grid ── -->
+<section class="repos-section">
+  <div class="eyebrow">Public Repositories</div>
+
+  <div class="repos-grid">
+    {% for repo in repos %}
+      <a href="{{ repo.html_url }}" target="_blank" rel="noopener" class="repo-card">
+        <div class="repo-card-top">
+          <svg class="repo-icon" viewBox="0 0 16 16" width="16" height="16">
+            <path fill="currentColor" d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1H4.5a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8Z"></path>
+          </svg>
+          <span class="repo-name">{{ repo.name }}</span>
+        </div>
+
+        {% if repo.description %}
+          <p class="repo-desc">{{ repo.description }}</p>
+        {% else %}
+          <p class="repo-desc repo-desc-empty">No description provided.</p>
+        {% endif %}
+
+        <div class="repo-card-bottom">
+          {% if repo.language %}
+            <span class="repo-lang">
+              <span class="lang-dot" data-lang="{{ repo.language }}"></span>
+              {{ repo.language }}
+            </span>
+          {% endif %}
+          {% if repo.stargazers_count %}
+            <span class="repo-stat">★ {{ repo.stargazers_count }}</span>
+          {% endif %}
+          {% if repo.forks_count %}
+            <span class="repo-stat">⑂ {{ repo.forks_count }}</span>
+          {% endif %}
+          <span class="repo-updated">Updated {{ repo.updated_at|date:"M j, Y" }}</span>
+        </div>
+      </a>
+    {% empty %}
+      <p class="repos-empty">No repositories to show yet.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
