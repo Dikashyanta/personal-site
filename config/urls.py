@@ -24,10 +24,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
     path('about/', include('about.urls')),
+    path('certificates/', include('certificate.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
 
 urlpatterns += [
-    path('projects/', include('project.urls')) ,
+    path('projects/', include('project.urls')),
 ]

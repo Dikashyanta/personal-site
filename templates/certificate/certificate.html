@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Certificates — Dikshyant{% endblock %}
+
+{% block content %}
+
+<section class="cert-header">
+  <div class="eyebrow">Proof of work</div>
+  <h1 class="cert-page-title">Things I<br><em>actually</em> learned.</h1>
+  <p class="cert-page-sub">
+    Not just the credential — the story behind why I pursued it and what I took away from it.
+  </p>
+</section>
+
+<section class="cert-grid-section">
+  <div class="cert-grid">
+    {% for certificate in certificates %}
+    <article class="cert-card" onclick="openCert(this)"
+      data-image="{% if certificate.image %}{{ certificate.image.url }}{% endif %}"
+      data-title="{{ certificate.title }}"
+      data-category="{{ certificate.category }}"
+      data-issuer="{{ certificate.issuer }}"
+      data-date="{{ certificate.date_display }}"
+      data-takeaway="{{ certificate.takeaway }}">
+
+      <div class="cert-card-image">
+        {% if certificate.image %}
+          <img src="{{ certificate.image.url }}" alt="{{ certificate.title }} certificate">
+        {% else %}
+          <div class="cert-card-placeholder">
+            <strong>Certificate preview</strong>
+            <span>Upload an image in Django admin</span>
+          </div>
+        {% endif %}
+        <div class="cert-card-badge">Completed</div>
+      </div>
+
+      <div class="cert-card-body">
+        <div class="cert-card-meta">
+          <span class="cert-category">{{ certificate.category }}</span>
+          <span class="cert-date">{{ certificate.date_display }}</span>
+        </div>
+        <h2 class="cert-title">{{ certificate.title }}</h2>
+        <div class="cert-issuer">{{ certificate.issuer }}</div>
+        <p class="cert-learned">{{ certificate.takeaway }}</p>
+        <div class="cert-cta">Click to view certificate →</div>
+      </div>
+    </article>
+    {% empty %}
+    <p class="cert-empty">No certificates added yet. Create one from the Django admin panel.</p>
+    {% endfor %}
+  </div>
+</section>
+
+<div class="cert-modal" id="certModal" onclick="closeCert(event)">
+  <div class="cert-modal-inner">
+    <button class="cert-modal-close" onclick="closeCert()">✕</button>
+    <div class="cert-modal-img-wrap">
+      <div class="cert-modal-placeholder">
+        <span>Certificate image</span>
+        <small>Upload via Django admin</small>
+      </div>
+      <img class="cert-modal-img" src="" alt="" style="display:none;">
+    </div>
+    <div class="cert-modal-meta">
+      <div class="cert-modal-top">
+        <p class="cert-modal-category"></p>
+        <p class="cert-modal-date"></p>
+      </div>
+      <h2 class="cert-modal-title"></h2>
+      <p class="cert-modal-issuer"></p>
+      <p class="cert-modal-text"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openCert(card) {
+    const modal = document.getElementById('certModal');
+    const title = card.dataset.title;
+    const issuer = card.dataset.issuer;
+    const category = card.dataset.category;
+    const date = card.dataset.date;
+    const takeaway = card.dataset.takeaway;
+
+    modal.querySelector('.cert-modal-title').textContent = title;
+    modal.querySelector('.cert-modal-issuer').textContent = issuer;
+    modal.querySelector('.cert-modal-category').textContent = category;
+    modal.querySelector('.cert-modal-date').textContent = date;
+    modal.querySelector('.cert-modal-text').textContent = takeaway;
+
+    const imgSrc = card.dataset.image;
+    const img = modal.querySelector('.cert-modal-img');
+    const ph = modal.querySelector('.cert-modal-placeholder');
+
+    if (imgSrc) {
+      img.src = imgSrc;
+      img.style.display = 'block';
+      ph.style.display = 'none';
+    } else {
+      img.style.display = 'none';
+      ph.style.display = 'flex';
+    }
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCert(e) {
+    if (e && e.target !== document.getElementById('certModal') &&
+        !e.target.classList.contains('cert-modal-close')) return;
+    document.getElementById('certModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeCert({ target: document.getElementById('certModal') });
+  });
+</script>
+
+{% endblock %}
